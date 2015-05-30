@@ -17,4 +17,22 @@ public class AbTestingPojo {
 		super();
 		this.experiments = experiments;
 	}
+
+	@SuppressWarnings("unused")
+	public class ExperimentPojo {
+		private String id;
+		private String name;
+		private String desc;
+		private List<FieldsPojo> fields;
+		private String createDate;
+		private String finishedDate;
+		private String expression;
+	}
+
+	@SuppressWarnings("unused")
+	class FieldsPojo {
+		private String name;
+		private String type;
+		private Object value;
+	}
 }

@@ -22,7 +22,6 @@ import org.json.JSONObject;
 import com.experimentmob.core.Constants;
 import com.experimentmob.core.DatabaseHelper;
 import com.experimentmob.pojos.AbTestingPojo;
-import com.experimentmob.pojos.ExperimentPojo;
 import com.google.gson.Gson;
 
 @Path("/apis")
@@ -51,14 +50,14 @@ public class OpenApis {
 	@Path("{appId}/abtesting")
 	@Produces(MediaType.APPLICATION_JSON)
 	public String getABTesting(@PathParam("appId") String appId) {
-		List<ExperimentPojo> experimentList = new ArrayList<ExperimentPojo>();
+		List<com.experimentmob.pojos.AbTestingPojo.ExperimentPojo> experimentList = new ArrayList<com.experimentmob.pojos.AbTestingPojo.ExperimentPojo>();
 		try {
 			String experimentsKey = appId + Constants.FIELD_SEPERATOR + Constants.EXPERIMENTS;
 			List<String> listExperimentString = DatabaseHelper.getInstance().getJedis().lrange(experimentsKey, 0, -1);
 			if (listExperimentString != null && listExperimentString.size() > 0) {
 				for (String experimentString : listExperimentString) {
 					logger.info("ExperimentString : " + experimentString);
-					ExperimentPojo experimentPojo = new Gson().fromJson(experimentString, ExperimentPojo.class);
+					com.experimentmob.pojos.AbTestingPojo.ExperimentPojo experimentPojo = new Gson().fromJson(experimentString, com.experimentmob.pojos.AbTestingPojo.ExperimentPojo.class);
 					experimentList.add(experimentPojo);
 				}
 			}
