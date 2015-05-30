@@ -1,0 +1,8 @@
+target/*
+release/*
+.project
+.classpath
+.settings/*
+*.jar
+
+/target
