@@ -121,6 +121,7 @@ public class SessionHelper {
             DatabaseHelper.getInstance().getJedis().set(key, jobj.toString());
             DatabaseHelper.getInstance().getJedis().expire(key, 2*24*60*60); //expire session after 2 days
         } catch (Exception e) {
+        	e.printStackTrace();
             throw new AbTestingException(Status.ERR_STORE_OPERATION, "Could not save session information. " + e.getMessage());
         }
     }
