@@ -11,7 +11,7 @@ public class ExperimentPojo {
 	private String finishedDate;
 	private String expression;
 
-	public ExperimentPojo(String id, String name, String desc, List<FieldsPojo> fields, String createDate, String finishedDate,String expression) {
+	public ExperimentPojo(String id, String name, String desc, List<FieldsPojo> fields, String createDate, String finishedDate, String expression) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -45,7 +45,7 @@ public class ExperimentPojo {
 	public List<FieldsPojo> getFields() {
 		return fields;
 	}
-	
+
 	public String getExpression() {
 		return expression;
 	}
