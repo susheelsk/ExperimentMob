@@ -34,7 +34,20 @@ public class DatabaseHelper {
 		}
 		logger.info("Connecting to jedis");
 		jedis = new Jedis(prop.getProperty(PROPERTIES_HOSTNAME, "localhost"), Integer.parseInt(prop.getProperty(PROPERTIES_PORT, "6379")));
+		jedis.connect();
 		logger.info(("Server is running: " + jedis.ping()));
+		setShutdownHook();
+	}
+	
+	private static void setShutdownHook() {
+		Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				logger.info("Service has shut down");
+				dbHelper.jedis.disconnect();
+			}
+		}));
 	}
 
 	public Jedis getJedis() {
